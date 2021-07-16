@@ -13,10 +13,18 @@ namespace blogger_server.Data
     {
       _db = db;
     }
-    public List<Profile> GetAllProfiles()
+    public Profile GetProfile(int id)
     {
-      var sql = " SELECT * FROM Profile";
-      return _db.Query<Profile>(sql).ToList();
+      var sql = " SELECT * FROM Profile WHERE id = @id";
+      return _db.QueryFirstOrDefault<Profile>(sql, new { id });
+    }
+    public IEnumerable<Profile> GetBlogsByProfile(int id){
+      var sql = "SELECT * FROM Blogs WHERE id = @id;";
+      return _db.Query<Profile>(sql);
+    }
+    public IEnumerable<Profile> GetCommentsByProfile(int id){
+      var sql = "SELECT * FROM Comments WHERE id = @id;";
+      return _db.Query<Profile>(sql);
     }
     public Profile Create(Profile profileData)
     {
