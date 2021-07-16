@@ -10,6 +10,6 @@ namespace blogger_server.Models{
         public string Body { get; set; }
         public string imgUrl { get; set; }
         public bool published { get; set; }
-        public string CreatorId { get; set; }
+        public int CreatorId { get; set; }
     }
 }
